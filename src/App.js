@@ -24,14 +24,52 @@ const initialExpenses = [
 ];
 
 function App() {
+  // all expenses, add expense
   const [expenses, setExpenses] = useState(initialExpenses);
+
+  // single expense
+  const [charge, setCharge] = useState('');
+
+  // single amount
+  const [amount, setAmount] = useState('');
+
+  // event performers
+  const handleCharge = event => {
+    setCharge(event.target.value);
+  };
+
+  const handleAmount = event => {
+    setAmount(event.target.value);
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    if (charge !== '' && amount > 0) {
+      const singleExpense = {
+        id: uuidv4(),
+        charge,
+        amount,
+      };
+      setExpenses([...expenses, singleExpense])
+      setCharge('')
+      setAmount('')
+    } else {
+      // handle alert called
+    }
+  };
 
   return (
     <>
       <Alert />
       <h1>budget calculator</h1>
       <main className="App">
-        <ExpenseForm />
+        <ExpenseForm
+          charge={charge}
+          amount={amount}
+          handleAmount={handleAmount}
+          handleCharge={handleCharge}
+          handleSubmit={handleSubmit}
+        />
         <ExpenseList expenses={expenses} />
       </main>
       <h1>
@@ -39,7 +77,7 @@ function App() {
         <span className="total">
           ${' '}
           {expenses.reduce((acc, curr) => {
-            return acc + curr.amount;
+            return acc + parseInt(curr.amount);
           }, 0)}
         </span>
       </h1>
