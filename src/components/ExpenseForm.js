@@ -6,6 +6,7 @@ export default function ExpenseForm({
   handleAmount,
   handleCharge,
   handleSubmit,
+  edit,
 }) {
   return (
     <form onSubmit={handleSubmit}>
@@ -36,7 +37,7 @@ export default function ExpenseForm({
         </div>
       </div>
       <button type="submit" className="btn">
-        submit
+        {edit ? 'edit' : 'submit'}
         <MdSend classname="btn-icon" />
       </button>
     </form>
