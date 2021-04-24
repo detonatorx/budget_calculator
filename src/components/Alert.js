@@ -1,3 +1,3 @@
-export default function ExpenseForm() {
-  return <div>Hello from Alert</div>;
+export default function ExpenseForm({ type, text }) {
+  return <div className={`alert alert-${type}`}>{text}</div>;
 }

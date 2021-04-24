@@ -20,7 +20,6 @@ export default function ExpenseForm({
             placeholder="e.g. rent"
             value={charge}
             onChange={handleCharge}
-            required
           />
         </div>
         <div className="form-group">
@@ -33,7 +32,6 @@ export default function ExpenseForm({
             placeholder="e.g. 200"
             value={amount}
             onChange={handleAmount}
-            required
           />
         </div>
       </div>
