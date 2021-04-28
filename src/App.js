@@ -3,25 +3,29 @@ import Alert from './components/Alert';
 import ExpenseList from './components/ExpenseList';
 import ExpenseForm from './components/ExpenseForm';
 import { v4 as uuidv4 } from 'uuid';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-const initialExpenses = [
-  {
-    id: uuidv4(),
-    charge: 'rent',
-    amount: 500,
-  },
-  {
-    id: uuidv4(),
-    charge: 'car payment',
-    amount: 400,
-  },
-  {
-    id: uuidv4(),
-    charge: 'credit card bill',
-    amount: 100,
-  },
-];
+// const initialExpenses = [
+//   {
+//     id: uuidv4(),
+//     charge: 'rent',
+//     amount: 500,
+//   },
+//   {
+//     id: uuidv4(),
+//     charge: 'car payment',
+//     amount: 400,
+//   },
+//   {
+//     id: uuidv4(),
+//     charge: 'credit card bill',
+//     amount: 100,
+//   },
+// ];
+
+const initialExpenses = localStorage.getItem('expenses')
+  ? JSON.parse(localStorage.getItem('expenses'))
+  : [];
 
 function App() {
   // all expenses, add expense
@@ -41,6 +45,11 @@ function App() {
 
   // edit item
   const [id, setId] = useState(0);
+
+  //useEffect
+  useEffect(() => {
+    localStorage.setItem('expenses', JSON.stringify(expenses));
+  }, [expenses]);
 
   // event performers
   const handleCharge = event => {
@@ -98,7 +107,10 @@ function App() {
     let item = expenses.filter(item => item.id == id);
     let remainingExpenses = expenses.filter(item => item.id !== id);
     setExpenses(remainingExpenses);
-    handleAlert({ type: 'danger', text: `item "${item[0].charge}" deleted` });
+    handleAlert({
+      type: 'danger',
+      text: `item "${item[0].charge}" deleted`,
+    });
   };
 
   // handle edit
@@ -112,7 +124,7 @@ function App() {
   };
 
   return (
-    <>
+    <div className="root-container">
       {alert.show && <Alert type={alert.type} text={alert.text} />}
       <Alert />
       <h1>budget calculator</h1>
@@ -141,7 +153,8 @@ function App() {
           }, 0)}
         </span>
       </h1>
-    </>
+      <div id="detonatorx">detonatorx ©, 2021</div>
+    </div>
   );
 }
 

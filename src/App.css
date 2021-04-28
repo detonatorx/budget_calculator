@@ -7,6 +7,18 @@
   --mainRed: #d50000;
   --mainGreen: #4caf50;
 }
+
+.root-container {
+  position: relative;
+}
+#detonatorx {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-left: 5%;
+  color: steelblue;
+}
+
 * {
   margin: 0;
   box-sizing: border-box;
@@ -15,6 +27,7 @@ body {
   background: var(--mainGrey);
   color: var(--mainBlack);
   font-family: 'Roboto', sans-serif;
+  min-height: 100%;
 }
 h1 {
   text-align: center;
