@@ -10,6 +10,7 @@
 
 .root-container {
   position: relative;
+  min-height:90vh;
 }
 #detonatorx {
   position: absolute;
