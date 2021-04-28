@@ -104,7 +104,7 @@ function App() {
 
   // handle delete
   const handleDelete = id => {
-    let item = expenses.filter(item => item.id == id);
+    let item = expenses.filter(item => item.id === id);
     let remainingExpenses = expenses.filter(item => item.id !== id);
     setExpenses(remainingExpenses);
     handleAlert({
@@ -115,7 +115,7 @@ function App() {
 
   // handle edit
   const handleEdit = id => {
-    let expense = expenses.find(item => item.id == id);
+    let expense = expenses.find(item => item.id === id);
     let { charge, amount } = expense;
     setCharge(charge);
     setAmount(amount);
