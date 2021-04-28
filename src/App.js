@@ -124,37 +124,39 @@ function App() {
   };
 
   return (
-    <div className="root-container">
-      {alert.show && <Alert type={alert.type} text={alert.text} />}
-      <Alert />
-      <h1>budget calculator</h1>
-      <main className="App">
-        <ExpenseForm
-          charge={charge}
-          amount={amount}
-          handleAmount={handleAmount}
-          handleCharge={handleCharge}
-          handleSubmit={handleSubmit}
-          edit={edit}
-        />
-        <ExpenseList
-          expenses={expenses}
-          handleDelete={handleDelete}
-          handleEdit={handleEdit}
-          clearItems={clearItems}
-        />
-      </main>
-      <h1>
-        total spending:{' '}
-        <span className="total">
-          ${' '}
-          {expenses.reduce((acc, curr) => {
-            return acc + parseInt(curr.amount);
-          }, 0)}
-        </span>
-      </h1>
+    <>
+      <div className="root-container">
+        {alert.show && <Alert type={alert.type} text={alert.text} />}
+        <Alert />
+        <h1 classname="h1">budget calculator</h1>
+        <main className="App">
+          <ExpenseForm
+            charge={charge}
+            amount={amount}
+            handleAmount={handleAmount}
+            handleCharge={handleCharge}
+            handleSubmit={handleSubmit}
+            edit={edit}
+          />
+          <ExpenseList
+            expenses={expenses}
+            handleDelete={handleDelete}
+            handleEdit={handleEdit}
+            clearItems={clearItems}
+          />
+        </main>
+        <h2>
+          total spending:{' '}
+          <span className="total">
+            ${' '}
+            {expenses.reduce((acc, curr) => {
+              return acc + parseInt(curr.amount);
+            }, 0)}
+          </span>
+        </h2>
+      </div>
       <div id="detonatorx">detonatorx ©, 2021</div>
-    </div>
+    </>
   );
 }
 
